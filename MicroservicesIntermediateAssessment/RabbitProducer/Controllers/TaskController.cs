@@ -29,7 +29,7 @@ namespace RabbitProducer.Controllers
             using (var connection = factory.CreateConnection())
             using (var channel = connection.CreateModel())
             {
-                channel.QueueDeclare(queue: "task",
+                channel.QueueDeclare(queue: "registry",
                                      durable: false,
                                      exclusive: false,
                                      autoDelete: false,
@@ -69,7 +69,7 @@ namespace RabbitProducer.Controllers
                 var body = Encoding.UTF8.GetBytes(message);
 
                 channel.BasicPublish(exchange: "",
-                                     routingKey: "task",
+                                     routingKey: "registry",
                                      basicProperties: null,
                                      body: body); 
 
